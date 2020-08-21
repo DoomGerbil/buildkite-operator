@@ -1,0 +1,24 @@
+# permissions for end users to edit buildenvironments.
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: buildenvironment-editor-role
+rules:
+- apiGroups:
+  - buildkite.wirecube.net
+  resources:
+  - buildenvironments
+  verbs:
+  - create
+  - delete
+  - get
+  - list
+  - patch
+  - update
+  - watch
+- apiGroups:
+  - buildkite.wirecube.net
+  resources:
+  - buildenvironments/status
+  verbs:
+  - get

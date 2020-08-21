@@ -6,6 +6,9 @@ resources:
 - group: buildkite
   kind: BuildJob
   version: v1alpha1
+- group: buildkite
+  kind: BuildEnvironment
+  version: v1alpha1
 version: 3-alpha
 plugins:
   go.sdk.operatorframework.io/v2-alpha: {}

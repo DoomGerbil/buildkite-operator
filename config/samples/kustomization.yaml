@@ -1,4 +1,5 @@
 ## Append samples you want in your CSV to this file as resources ##
 resources:
 - buildkite_v1alpha1_buildjob.yaml
+- buildkite_v1alpha1_buildenvironment.yaml
 # +kubebuilder:scaffold:manifestskustomizesamples
