@@ -1,0 +1,24 @@
+# permissions for end users to edit buildjobs.
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: buildjob-editor-role
+rules:
+- apiGroups:
+  - buildkite.wirecube.net
+  resources:
+  - buildjobs
+  verbs:
+  - create
+  - delete
+  - get
+  - list
+  - patch
+  - update
+  - watch
+- apiGroups:
+  - buildkite.wirecube.net
+  resources:
+  - buildjobs/status
+  verbs:
+  - get

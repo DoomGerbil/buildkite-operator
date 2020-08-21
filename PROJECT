@@ -2,6 +2,10 @@ domain: wirecube.net
 layout: go.kubebuilder.io/v2
 projectName: buildkite-operator
 repo: github.com/doomgerbil/buildkite-operator
+resources:
+- group: buildkite
+  kind: BuildJob
+  version: v1alpha1
 version: 3-alpha
 plugins:
   go.sdk.operatorframework.io/v2-alpha: {}
