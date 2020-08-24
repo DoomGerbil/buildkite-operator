@@ -1,0 +1,48 @@
+
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  creationTimestamp: null
+  name: manager-role
+rules:
+- apiGroups:
+  - buildkite.wirecube.net
+  resources:
+  - buildenvironments
+  verbs:
+  - create
+  - delete
+  - get
+  - list
+  - patch
+  - update
+  - watch
+- apiGroups:
+  - buildkite.wirecube.net
+  resources:
+  - buildenvironments/status
+  verbs:
+  - get
+  - patch
+  - update
+- apiGroups:
+  - buildkite.wirecube.net
+  resources:
+  - buildjobs
+  verbs:
+  - create
+  - delete
+  - get
+  - list
+  - patch
+  - update
+  - watch
+- apiGroups:
+  - buildkite.wirecube.net
+  resources:
+  - buildjobs/status
+  verbs:
+  - get
+  - patch
+  - update

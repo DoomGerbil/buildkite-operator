@@ -1,0 +1,159 @@
+
+---
+apiVersion: apiextensions.k8s.io/v1beta1
+kind: CustomResourceDefinition
+metadata:
+  annotations:
+    controller-gen.kubebuilder.io/version: v0.3.0
+  creationTimestamp: null
+  name: buildjobs.buildkite.wirecube.net
+spec:
+  group: buildkite.wirecube.net
+  names:
+    kind: BuildJob
+    listKind: BuildJobList
+    plural: buildjobs
+    singular: buildjob
+  scope: Namespaced
+  subresources:
+    status: {}
+  validation:
+    openAPIV3Schema:
+      description: BuildJob is the Schema for the buildjobs API
+      properties:
+        apiVersion:
+          description: 'APIVersion defines the versioned schema of this representation
+            of an object. Servers should convert recognized schemas to the latest
+            internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources'
+          type: string
+        kind:
+          description: 'Kind is a string value representing the REST resource this
+            object represents. Servers may infer this from the endpoint the client
+            submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds'
+          type: string
+        metadata:
+          type: object
+        spec:
+          description: BuildJobSpec defines the desired state of BuildJob
+          properties:
+            agent_query_rules:
+              description: Specified agent query rules, used to pick an environment
+                to run in.
+              items:
+                type: string
+              type: array
+            automatic_artifact_upload_paths:
+              description: Paths to automatically collect artifacts from
+              items:
+                type: string
+              type: array
+            branch:
+              description: The git branch to run this job against
+              type: string
+            build:
+              description: The build ID this job is associated with
+              type: string
+            command:
+              description: The command to run for the job
+              items:
+                type: string
+              type: array
+            commit:
+              description: The commit on the branch to run this job against
+              type: string
+            concurrency:
+              description: Concurrency rules for the job
+              type: string
+            env:
+              description: Environment variables to set for this job
+              items:
+                type: string
+              type: array
+            id:
+              description: The ID for this job
+              type: string
+            metadata:
+              description: Optional metadata to set on this build
+              type: string
+            pipeline:
+              description: The pipeline this job is associated with
+              type: string
+            repo:
+              description: The repo this job needs to sync
+              type: string
+            retry_rules:
+              description: Rules for retrying the job if it fails
+              properties:
+                automatic:
+                  description: The rules to use for deciding if we should auto-retry
+                    after a failure
+                  properties:
+                    exit_status:
+                      description: The exit status that this rule applies to
+                      type: string
+                    limit:
+                      description: Maximum number of automatic retries for this exit
+                        status
+                      type: string
+                  type: object
+                manual:
+                  description: If true, this job can be manually retried
+                  type: boolean
+              type: object
+          required:
+          - agent_query_rules
+          - branch
+          - build
+          - command
+          - commit
+          - env
+          - id
+          - pipeline
+          - repo
+          type: object
+        status:
+          description: BuildJobStatus defines the observed state of BuildJob
+          properties:
+            artifacts:
+              description: The artifacts collected by the job
+              items:
+                type: string
+              type: array
+            cancelled_at:
+              description: When the build was cancelled
+              type: string
+            created_at:
+              description: When the build was created
+              type: string
+            exit_status:
+              description: The exit status returned by the job
+              type: string
+            finished_at:
+              description: When the build finished
+              type: string
+            passed:
+              description: If the job has finished in a passing state
+              type: boolean
+            started_at:
+              description: When the build started running
+              type: string
+            state:
+              description: The current state of the build
+              type: string
+          required:
+          - created_at
+          - passed
+          - state
+          type: object
+      type: object
+  version: v1alpha1
+  versions:
+  - name: v1alpha1
+    served: true
+    storage: true
+status:
+  acceptedNames:
+    kind: ""
+    plural: ""
+  conditions: []
+  storedVersions: []

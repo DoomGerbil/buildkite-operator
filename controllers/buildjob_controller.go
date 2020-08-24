@@ -42,7 +42,6 @@ func (r *BuildJobReconciler) Reconcile(req ctrl.Request) (ctrl.Result, error) {
 	_ = r.Log.WithValues("buildjob", req.NamespacedName)
 
 	// your logic here
-
 	return ctrl.Result{}, nil
 }
 
