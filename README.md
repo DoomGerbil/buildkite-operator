@@ -4,7 +4,7 @@ A Kubernetes Operator for executing BuildKite jobs in a cluster.
 
 ## Docs
 
-Usage and implementation docs don't exist yet because it isn't implemented and ypu
+Usage and implementation docs don't exist yet because it isn't implemented and you
 can't use it.
 
 ## Design
