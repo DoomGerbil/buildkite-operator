@@ -32,3 +32,5 @@ for every BuildKite job, there are two implicit dependencies:
 Our proposal is the [JobSpawner service](5-controllers_services.md#JobSpawner) below for details on the proposed solution to this issue.
 
 Until this implementation exists, `BuildJobs` can be manually inserted into the cluster via `kubectl apply -f` or the like to exercise the rest of the Operator's functionality.
+
+[Next Step: `BuildJobs`](2-build_job.md)

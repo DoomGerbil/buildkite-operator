@@ -24,3 +24,5 @@ cluster initiates actual workload execution, and its lifecycle follows the workl
 TODO actual docs on options, examples, etc.
 
 In the meantime, see the [BuildJob spec](../../api/v1alpha1/buildjob_types.go) for configuration options.
+
+[Next Step: Build Environments](3-build_environment.md)

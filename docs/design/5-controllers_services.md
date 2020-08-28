@@ -121,4 +121,6 @@ This should be considered best effort, since there will always be some unvalidat
 
 TODO (future): Provide some hook for allowing custom, user-defined validation.
 
+[Next Step: Cluster Operations and Advanced Configuration](6-cluster_ops.md)
+
 [BuildKite agent targeting rules]: https://buildkite.com/docs/agent/v3/cli-start#agent-targeting

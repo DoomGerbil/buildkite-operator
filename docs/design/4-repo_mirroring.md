@@ -34,3 +34,5 @@ In order to speed up repo syncing, primary workload containers will mount the mi
 However, those workers will still need to fetch the delta between the mirror and `HEAD@remote` over the internet, so the smaller this delta, the better the performance.
 
 This component is responsible for keeping those persistent repo mirrors as up to date as possible. In the normal case, we could let `buildkite-agent` keep these mirrors up to date, but in this case, we want to have a single persistent repo mirror shared between all ephemeral containers - since `BuildJob` `Pod`s are destroyed after each job completes, they cannot have any persistent cross-job repo cache.
+
+[Next Step: Controllers and Services](5-controllers_services.md)

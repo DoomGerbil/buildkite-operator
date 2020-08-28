@@ -98,3 +98,5 @@ Custom sidecar containers may be defined the same way as a `BuildEnvironment`.
 For example, maybe you want to have a test result exporter that watches for the main workload to complete, and then collects a JUnit test report XML output and sends it to an external service for processing/reporting.
 
 By putting this in a sidecar instead of in your primary workload container, it becomes both reusable across multiple jobs, and allows you to make changes to your test reporting without needing to change your build environment.
+
+[Next Step: Repo Mirroring](4-repo_mirroring.md)
