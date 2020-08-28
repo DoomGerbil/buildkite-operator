@@ -63,3 +63,26 @@ In some cases, you may want to set aside some nodes for _only_ specific workload
 except for specific workloads that explicitly choose to run on them.
 
 TODO: Provide examples of this
+
+### RBAC
+
+`BuildJobs` will only be created in a specific namespace in your cluster, as configured above, which allows
+you to use the namespace as a security boundary.
+
+The recommended configuration is to run the Operator and its services in one namespace
+(eg `buildkite-operator`), and create the `BuildJobs` and associated resources in a different,
+dedicated namespace (eg `buildkite-jobs`), that is used _only_ to run these jobs.
+
+To do this, the controller includes a `ClusterRole` and `ClusterRoleBinding` that allow for the
+creation of `BuildJobs` in any namespace.
+
+### Differences in Cluster Providers
+
+Any Kubernetes cluster should be able to host the operator, but clusters from different providers may
+have different capabilities, based on the platform underlying them.
+
+For example, a GKE cluster may be better for dynamically scaling node capacity, whereas an on-prem
+cluster may have access to specific resources or custom hardware that don't exist on cloud providers.
+
+Because of this, you may want to mix and match clusters - see the doc on [JobSpawner](#jobspawner-labels)
+for details.

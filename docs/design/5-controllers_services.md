@@ -42,6 +42,8 @@ steps:
       queue: bk-operator
 ```
 
+#### JobSpawner Labels
+
 If extra labels are specified in the `JobSpawner`'s configuration, it will register with those as well.
 This can be useful if, for example, you have multiple Operators (eg in different clusters) at which
 you wish to target different jobs, like so:
