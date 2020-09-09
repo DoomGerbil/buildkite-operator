@@ -16,12 +16,16 @@ Some important notes about these:
 - All `initContainers` run in serial, and block workload startup, so adding several of these can have a negative performance impact.
 - All `initContainer` failures are fatal, thus any failed `initContainer` job is inherently fatal to the `BuildJob`.
 
-### `initContainer`: RepoMirror
+### RepoMirror initContainer
 
 This container will check the cluster-local repo cache to see if the requested git repo is present, and will copy it into the pod if so.
 It will also ensure that the pod's clone of the repo is up to date before the primary workload begins.
 
 See the [RepoSyncer doc](4-repo_mirroring.md) for full details.
+
+### ArtifactDownloader initContainer
+
+This container will mount a volume in the `Pod` (default path `/artifacts-imported`), and download all specified pipeline artifacts into it.
 
 ## Sidecar Containers
 
@@ -69,7 +73,7 @@ Next, the `BuildJob` config can specify to capture stdout/stderr.
 
 Finally, the `BuildJob` configuration can specify a list of filepaths, and the sidecar will watch for content to be written to those paths and export them.
 
-#### ArtifactExporter Sidecar
+#### ArtifactUploader Sidecar
 
 This container will mount a volume in the `Pod` (default path `/artifacts`), and any files written under this path will be captured as a Buildkite artifact with the stored path relative to `/artifacts`.
 

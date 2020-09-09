@@ -22,32 +22,56 @@ import (
 
 // BuildJobSpec defines the desired state of BuildJob
 type BuildJobSpec struct {
-	// The git branch to run this job against
-	Branch string `json:"branch"`
-	// The commit on the branch to run this job against
-	Commit string `json:"commit"`
-	// The pipeline this job is associated with
-	Pipeline string `json:"pipeline"`
-	// The build ID this job is associated with
-	Build string `json:"build"`
-	// The ID for this job
-	Id string `json:"id"`
-	// The repo this job needs to sync
-	Repo string `json:"repo"`
-	// Environment variables to set for this job
-	Env []string `json:"env"`
-	// Rules for retrying the job if it fails
-	RetryRules RetryRules `json:"retry_rules,omitempty"`
-	// Paths to automatically collect artifacts from
-	ArtifactPaths []string `json:"automatic_artifact_upload_paths,omitempty"`
-	// Specified agent query rules, used to pick an environment to run in.
-	AgentQueryRules []string `json:"agent_query_rules"`
-	// The command to run for the job
-	Command []string `json:"command"`
-	// Concurrency rules for the job
-	Concurrency string `json:"concurrency,omitempty"`
-	// Optional metadata to set on this build
-	Metadata string `json:"metadata,omitempty"`
+	// // The git branch to run this job against
+	// Branch string `json:"branch"`
+	// // The commit on the branch to run this job against
+	// Commit string `json:"commit"`
+	// // The pipeline this job is associated with
+	// Pipeline string `json:"pipeline"`
+	// // The build ID this job is associated with
+	// Build string `json:"build"`
+	// // The ID for this job
+	// Id string `json:"id"`
+	// // The repo this job needs to sync
+	// Repo string `json:"repo"`
+	// // Environment variables to set for this job
+	// Env []string `json:"env"`
+	// // Rules for retrying the job if it fails
+	// RetryRules RetryRules `json:"retry_rules,omitempty"`
+	// // Paths to automatically collect artifacts from
+	// ArtifactPaths []string `json:"automatic_artifact_upload_paths,omitempty"`
+	// // Specified agent query rules, used to pick an environment to run in.
+	// AgentQueryRules []string `json:"agent_query_rules"`
+	// // The command to run for the job
+	// Command []string `json:"command"`
+	// // Concurrency rules for the job
+	// Concurrency string `json:"concurrency,omitempty"`
+	// // Optional metadata to set on this build
+	// Metadata string `json:"metadata,omitempty"`
+}
+
+// Represents the job spec as assigned to the agent from BuildKite
+type BuildkiteJob struct {
+	Agents      []AgentLabel     `json:"agents"`
+	Branch      string           `json:"branch"`
+	Concurrency Concurrency      `json:"concurrency,omitempty"`
+	Env         []EnvironmentVar `json:"env"`
+}
+
+// Represents an agent label/value pair
+type AgentLabel struct {
+	Label string `json:"label"`
+	Value string `json:"value"`
+}
+
+type Concurrency struct {
+	Count int    `json:"count"`
+	Group string `json:"group"`
+}
+
+type EnvironmentVar struct {
+	Name  string `json:"name"`
+	Value string `json:"value"`
 }
 
 // Represents the rules for job retries

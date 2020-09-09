@@ -1,0 +1,68 @@
+BuildJob:
+  BuildkiteJob:
+    agents:
+      - label: value1
+      - label2: value2
+    branch: branch1
+    concurrency:
+      count: 1
+      group: "group_name"
+    env:
+      - ENV_VAR_1: value1
+      - ENV_VAR_2: value2
+    parallelism:
+      count: 1
+    plugins:
+      - pluginName#version:
+          arg1: foo
+          arg2: bar
+    automatic_retry:
+      - exit_status: "*"
+        limit: 2
+    timeout_minutes: 0
+  extraRepos:
+    - git@github.com:org/repo_one.git
+    - git@github.com:org/repo_two.git
+  logExporter:
+    logVolume: "/logs"
+    paths:
+      - "/path/to/log/one.txt"
+      - "/path/to/log/two.log"
+    stdout: true
+    stderr: true
+    logSinks:
+      - ...
+  artifactUploader:
+    path: "/artifacts"
+  artifactDownloader:
+    paths:
+      - /path/to/artifact/one.file
+      - /path/to/artifact/two.file
+  metricsExporter:
+    prometheus:
+      path: "/metrics/prometheus"
+    prometheus-push:
+      path: "/metrics/prometheus-push"
+    datadog:
+      path: "/metrics/datadog"
+  BuildEnvironment:
+    extraInitContainers:
+      - name: initContainerName
+        image: image:tag
+        args:
+          - --arg1
+          - --arg2
+        env:
+          - ENV_VAR_1: value1
+          - ENV_VAR_2: value2
+    extraSidecarContainers:
+      - name: sidecarContainerName
+        image: image:tag
+        args:
+          - --arg1
+          - --arg2
+        env:
+          - ENV_VAR_1: value1
+          - ENV_VAR_2: value2
+    nodeRules:
+      <Schema TBD>
