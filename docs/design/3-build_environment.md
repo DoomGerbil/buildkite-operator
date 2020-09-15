@@ -57,6 +57,8 @@ TODO: How does this inject the required environment variables into the main work
 
 TODO: Does this also run the `buildkite-agent bootstrap`? If not, where do we do that, since we want to hook into that somewhere?
 
+TODO: See [here](https://github.com/buildkite/agent/pull/1218) for a pre-built buildkite-sidecar that may or may not work here.
+
 #### LogExporter Sidecar
 
 This container can be attached to a job along with a per-job configuration, which chooses a named log sink and sets log source configuration.
